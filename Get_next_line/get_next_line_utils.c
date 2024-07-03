@@ -3,41 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eperperi <eperperi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 17:29:37 by eperperi          #+#    #+#             */
-/*   Updated: 2024/04/07 20:42:30 by eperperi         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:07:19 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../minishell.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	j;
+// size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+// {
+// 	size_t	i;
+// 	size_t	j;
 
-	j = 0;
-	i = 0;
-	while (src[i] != '\0')
-	{
-		i++;
-	}
-	if (size == '\0')
-	{
-		return (i);
-	}
-	while (src[j] != '\0' && j < size - 1)
-	{
-		dst[j] = src[j];
-		j++;
-	}
-	if (size > 0)
-	{
-		dst[j] = '\0';
-	}
-	return (i);
-}
+// 	j = 0;
+// 	i = 0;
+// 	while (src[i] != '\0')
+// 	{
+// 		i++;
+// 	}
+// 	if (size == '\0')
+// 	{
+// 		return (i);
+// 	}
+// 	while (src[j] != '\0' && j < size - 1)
+// 	{
+// 		dst[j] = src[j];
+// 		j++;
+// 	}
+// 	if (size > 0)
+// 	{
+// 		dst[j] = '\0';
+// 	}
+// 	return (i);
+// }
 
 char	*ft_strdup(const char *s1)
 {
@@ -80,17 +81,17 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ptr);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
 
-	i = 0;
-	if (s == NULL)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	if (s == NULL)
+// 		return (0);
+// 	while (s[i] != '\0')
+// 		i++;
+// 	return (i);
+// }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

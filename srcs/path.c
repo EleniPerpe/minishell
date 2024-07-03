@@ -6,7 +6,7 @@
 /*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:00:29 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/03 17:27:13 by eleni            ###   ########.fr       */
+/*   Updated: 2024/07/03 18:24:39 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ char *expander_fill(char *line, int *i, t_line_data **data)
 	char *expander;
 	int j;
 
+	printf("hiiiii\n");
+
 	new_line_data = (t_line_data *)ft_malloc(sizeof(t_line_data));
 	j = 0;
 	(*i)++;
@@ -97,6 +99,7 @@ char *expander_fill(char *line, int *i, t_line_data **data)
 	new_line_data->expander = (char *)ft_malloc(j + 1);
 	new_line_data->expander = expander;
 	new_line_data->expander[j] = '\0';
+	printf("Expander is : %s", new_line_data->expander);
 	add_node_to_list(data, new_line_data);
 	return (expander);
 	// return (char *);

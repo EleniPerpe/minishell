@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eperperi <eperperi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 18:49:34 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/02 18:18:30 by eperperi         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:21:08 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	start_prompt(char **env)
 				printf("redirector is: %s\n", tmp->redirctor);
 			if (tmp->after_redirctor != NULL)
 				printf("File name is: %s\n", tmp->after_redirctor);
+			// if (tmp->expander != NULL)
+			// 	printf("expander is: %s\n", tmp->expander);
 			if (tmp->command != NULL)
 			{
 				int i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eperperi <eperperi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:28:05 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/02 16:43:46 by eperperi         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:21:35 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int quote_token(char *line, int i, t_line_data **line_data)
 	
 	flag = -1;
 	j = 0;
-	while (line[i] == ' ' || line[i] == '"' || line[i] == '\'') // go back to check the previous token
+	while ((line[i] == ' ' || line[i] == '"' || line[i] == '\'') && (line[i] != 0)) // go back to check the previous token
 		i--;	
 	if (line[i] == '<' || line[i] == '>')  // if it's after_redirector, sets the flag to 7
 		flag = 7;

@@ -6,7 +6,7 @@
 /*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:00:29 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/03 20:32:23 by eleni            ###   ########.fr       */
+/*   Updated: 2024/07/03 22:13:19 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ void add_path_to_list(t_env **mini_env, t_env *new_env)
 	}
 }
 
-int expander_fill(char *line, int i, t_line_data **data)
+int expander_fill(char *line, int i, t_line_data **data, char **env)
 {
 	t_line_data *new_line_data;
 	char *expander;
 	int j;
+	int env_res;
+	char *final_env;
 
 	printf("hiiiii\n");
 
@@ -90,19 +92,67 @@ int expander_fill(char *line, int i, t_line_data **data)
 	expander = (char *)ft_malloc(j + 1);
 	ft_strlcpy(expander, &line[i], j + 1);
 	expander[j] = '\0';
-	i = i + j;
-	// printf("expander : %s and i : %d\n", expander, i);
-	new_line_data->type = 1;
-	new_line_data->command = NULL;
-	new_line_data->redirctor = NULL;
-	new_line_data->after_redirctor = NULL;
-	new_line_data->next = NULL;
-	new_line_data->expander = (char *)ft_malloc(j + 1);
-	ft_strlcpy(new_line_data->expander, expander, j);
-	new_line_data->expander[j] = '\0';
-	add_node_to_list(data, new_line_data);
-	printf("Expander is : %s", new_line_data->expander);
+	env_res = find_expander(expander, env);
+	if (env_res == 0)
+	{
+		if (i == 1)
+			;
+		else
+		{
+			printf("minishell: $%s: ambiguous redirect", expander);
+			free(expander);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		i = i + j;
+		new_line_data->type = 1;
+		new_line_data->command = NULL;
+		new_line_data->redirctor = NULL;
+		new_line_data->after_redirctor = NULL;
+		new_line_data->next = NULL;
+		final_env = create_final_env(env_res, env);
+		new_line_data->expander = (char *)ft_malloc(ft_strlen(final_env) + 1);
+		ft_strlcpy(new_line_data->expander, final_env, ft_strlen(final_env) + 1);
+		new_line_data->expander[j] = '\0';
+		add_node_to_list(data, new_line_data);
+		printf("Expander is : %s", new_line_data->expander);
+	}
 	free(expander);
 	return (i);
-	// return (char *);
+}
+
+char *create_final_env(int i, char **env)
+{
+	int j;
+	char *res;
+	int total_len;
+
+	total_len = ft_strlen(env[i]);
+	j = 0;
+	while (env[i][j] != '=')
+		j++;
+	j++;
+	res = (char *)ft_malloc(total_len - j + 1);
+	ft_strlcpy(res, &env[i][j + 1], j);
+	res[j] = '\0';
+	return (res);
+}
+
+int find_expander(char *expander, char **env)
+{
+	int i;
+    size_t len = strlen(expander);
+
+	i = 0;
+	while (env[i] != NULL)
+	{
+		if (ft_strncmp(expander, env[i], len) == 0 && env[i][len] == '=')
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (0);
 }

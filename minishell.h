@@ -6,7 +6,7 @@
 /*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:35:18 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/03 20:32:16 by eleni            ###   ########.fr       */
+/*   Updated: 2024/07/03 22:12:55 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	add_node_to_list(t_line_data **data, t_line_data *new_line_data);
 int		ft_split_pipe(char *line, t_line_data **line_data, char p, int i, char **env);
 int		quote_token(char *line, int i, t_line_data **line_data);
 void	create_path(char **env, t_env **mini_env);
-int expander_fill(char *line, int i, t_line_data **data);
+int expander_fill(char *line, int i, t_line_data **data, char **env);
+int find_expander(char *expander, char **env);
+char *create_final_env(int i, char **env);
 
 #endif
 

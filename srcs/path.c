@@ -6,7 +6,7 @@
 /*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:00:29 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/03 18:55:23 by eleni            ###   ########.fr       */
+/*   Updated: 2024/07/03 20:32:23 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void add_path_to_list(t_env **mini_env, t_env *new_env)
 	}
 }
 
-char *expander_fill(char *line, int *i, t_line_data **data)
+int expander_fill(char *line, int i, t_line_data **data)
 {
 	t_line_data *new_line_data;
 	char *expander;
@@ -82,16 +82,16 @@ char *expander_fill(char *line, int *i, t_line_data **data)
 
 	new_line_data = (t_line_data *)ft_malloc(sizeof(t_line_data));
 	j = 0;
-	(*i)++;
+	(i)++;
 	printf("Hi from the expander function :)\n");
-	while (line[*i + j] != ' ' && line[*i + j] != '\0')
+	while (line[i + j] != ' ' && line[i + j] != '\0')
 		j++;
-	printf("i : %d and j : %d\n", *i, j);
+	printf("i : %d and j : %d\n", i, j);
 	expander = (char *)ft_malloc(j + 1);
-	ft_strlcpy(expander, &line[*i], j + 1);
+	ft_strlcpy(expander, &line[i], j + 1);
 	expander[j] = '\0';
-	*i = *i + j;
-	// printf("expander : %s and i : %d\n", expander, *i);
+	i = i + j;
+	// printf("expander : %s and i : %d\n", expander, i);
 	new_line_data->type = 1;
 	new_line_data->command = NULL;
 	new_line_data->redirctor = NULL;
@@ -103,6 +103,6 @@ char *expander_fill(char *line, int *i, t_line_data **data)
 	add_node_to_list(data, new_line_data);
 	printf("Expander is : %s", new_line_data->expander);
 	free(expander);
-	return (new_line_data->expander);
+	return (i);
 	// return (char *);
 }

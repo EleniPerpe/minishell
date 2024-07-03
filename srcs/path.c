@@ -6,7 +6,7 @@
 /*   By: eleni <eleni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:00:29 by eperperi          #+#    #+#             */
-/*   Updated: 2024/07/03 18:24:39 by eleni            ###   ########.fr       */
+/*   Updated: 2024/07/03 18:55:23 by eleni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char *expander_fill(char *line, int *i, t_line_data **data)
 	new_line_data = (t_line_data *)ft_malloc(sizeof(t_line_data));
 	j = 0;
 	(*i)++;
+	printf("Hi from the expander function :)\n");
 	while (line[*i + j] != ' ' && line[*i + j] != '\0')
 		j++;
 	printf("i : %d and j : %d\n", *i, j);
@@ -97,10 +98,11 @@ char *expander_fill(char *line, int *i, t_line_data **data)
 	new_line_data->after_redirctor = NULL;
 	new_line_data->next = NULL;
 	new_line_data->expander = (char *)ft_malloc(j + 1);
-	new_line_data->expander = expander;
+	ft_strlcpy(new_line_data->expander, expander, j);
 	new_line_data->expander[j] = '\0';
-	printf("Expander is : %s", new_line_data->expander);
 	add_node_to_list(data, new_line_data);
-	return (expander);
+	printf("Expander is : %s", new_line_data->expander);
+	free(expander);
+	return (new_line_data->expander);
 	// return (char *);
 }
